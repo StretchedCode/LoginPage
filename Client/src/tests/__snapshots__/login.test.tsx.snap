@@ -2,15 +2,17 @@
 
 exports[`DOM structure matches snapshot 1`] = `
 <div>
-  <form
-    action=""
-    method=""
-    role="form"
-  >
-    <h1>
-      Log In.
-    </h1>
-  </form>
+  <div>
+    <form
+      action=""
+      method=""
+      role="form"
+    >
+      <h1>
+        Log In.
+      </h1>
+    </form>
+  </div>
 </div>
 `;
 
