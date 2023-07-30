@@ -1,7 +1,14 @@
 import "./stylesheets/App.css"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
-  return <div>Welcome to my blog</div>
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={login}></Route>
+      </Routes>
+    </>
+  )
 }
 
 export default App
