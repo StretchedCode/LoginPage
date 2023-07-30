@@ -6,7 +6,11 @@ exports[`DOM structure matches snapshot 1`] = `
     action=""
     method=""
     role="form"
-  />
+  >
+    <h1>
+      Log In.
+    </h1>
+  </form>
 </div>
 `;
 
@@ -15,5 +19,9 @@ exports[`render of Form 1`] = `
   action=""
   method=""
   role="form"
-/>
+>
+  <h1>
+    Log In.
+  </h1>
+</form>
 `;
