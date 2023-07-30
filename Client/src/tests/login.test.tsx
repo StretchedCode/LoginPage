@@ -14,6 +14,14 @@ describe("Form testing", () => {
 
     expect(screen.getByRole("heading").textContent).toMatch("Log In.")
   })
+
+  test("Testing input for username", () => {
+    const { container } = render(<Login></Login>)
+
+    expect(
+      screen.getByPlaceholderText("Username ex. Joe123").textContent,
+    ).toMatch("")
+  })
 })
 
 test("DOM structure matches snapshot", () => {
