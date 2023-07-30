@@ -5,7 +5,19 @@ function Login() {
     <div className="min-h-screen min-w-[100vw]">
       <form action="" method="" role="form">
         <h1>Log In.</h1>
-        <input type="text" required placeholder="Username ex. Joe123"></input>
+        <div>
+          <label
+            role="user-label"
+            aria-label="username input"
+            htmlFor="username"
+          ></label>
+          <input
+            type="text"
+            required
+            placeholder="Username ex. Joe123"
+            name="username"
+          ></input>
+        </div>
       </form>
     </div>
   )
