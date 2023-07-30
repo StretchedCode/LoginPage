@@ -15,6 +15,12 @@ describe("Form testing", () => {
     expect(screen.getByRole("heading").textContent).toMatch("Log In.")
   })
 
+  test("Testing for label", () => {
+    const { container } = render(<Login></Login>)
+
+    expect(screen.getByRole("user-label").textContent).toMatch("")
+  })
+
   test("Testing input for username", () => {
     const { container } = render(<Login></Login>)
 
