@@ -12,7 +12,7 @@ describe("Form testing", () => {
   test("Testing header label", () => {
     const { container } = render(<Login></Login>)
 
-    expect(screen.getByRole("heading")).toMatch("Log In.")
+    expect(screen.getByRole("heading").textContent).toMatch("Log In.")
   })
 })
 
