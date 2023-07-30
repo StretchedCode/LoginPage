@@ -38,7 +38,7 @@ describe("Form testing", () => {
   test("Testing for password input", () => {
     const { container } = render(<Login></Login>)
 
-    expect(screen.getByPlaceholderText("password")).toMatch("")
+    expect(screen.getByPlaceholderText("password").textContent).toMatch("")
   })
 })
 
