@@ -8,6 +8,14 @@ test("render of Form", () => {
   expect(screen.getByRole("form")).toMatchSnapshot()
 })
 
+describe("Form testing", () => {
+  test("Testing header label", () => {
+    const { container } = render(<Login></Login>)
+
+    expect(screen.getByRole("heading")).toMatch("Log In.")
+  })
+})
+
 test("DOM structure matches snapshot", () => {
   const { container } = render(<Login></Login>)
 
