@@ -1,7 +1,11 @@
 import { Routes, Route } from "react-router-dom"
 
 function Login() {
-  return <div role="label">Log in</div>
+  return (
+    <>
+      <form action="" method="" role="form"></form>
+    </>
+  )
 }
 
 export default Login
