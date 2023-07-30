@@ -2,7 +2,9 @@
 
 exports[`DOM structure matches snapshot 1`] = `
 <div>
-  <div>
+  <div
+    class="min-h-screen min-w-[100vw]"
+  >
     <form
       action=""
       method=""
