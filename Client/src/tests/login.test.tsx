@@ -38,6 +38,12 @@ describe("Form testing", () => {
 
     expect(screen.getByPlaceholderText("Password").textContent).toMatch("")
   })
+
+  test("Valid Login Button", () => {
+    const { container } = render(<Login></Login>)
+
+    expect(screen.getByRole("submit-login").textContent).toMatch("Log in")
+  })
 })
 
 test("DOM structure matches snapshot", () => {
