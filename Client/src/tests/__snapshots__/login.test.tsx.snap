@@ -7,12 +7,14 @@ exports[`DOM structure matches snapshot 1`] = `
   >
     <form
       action=""
-      class="bg-white p-5 rounded"
+      class="bg-white p-7 rounded flex flex-col gap-5 min-w-[25%]"
       method=""
       role="form"
     >
-      <h1>
-        Log In.
+      <h1
+        class="font-bold text-3xl"
+      >
+        Log in
       </h1>
       <div>
         <label
@@ -20,8 +22,9 @@ exports[`DOM structure matches snapshot 1`] = `
           role="user-label"
         />
         <input
+          class="min-w-full min-h-[10%] bg-slate-200 focus:outline-none p-3 placeholder:text-slate-500"
           name="username"
-          placeholder="Username ex. Joe123"
+          placeholder="Username"
           required=""
           role="username-input"
           type="text"
@@ -33,8 +36,9 @@ exports[`DOM structure matches snapshot 1`] = `
           role="password-label"
         />
         <input
+          class="min-w-full min-h-[10%] bg-slate-200 focus:outline-none p-3 placeholder:text-slate-500"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           required=""
           role="user-password"
           type="password"
@@ -48,12 +52,14 @@ exports[`DOM structure matches snapshot 1`] = `
 exports[`render of Form 1`] = `
 <form
   action=""
-  class="bg-white p-5 rounded"
+  class="bg-white p-7 rounded flex flex-col gap-5 min-w-[25%]"
   method=""
   role="form"
 >
-  <h1>
-    Log In.
+  <h1
+    class="font-bold text-3xl"
+  >
+    Log in
   </h1>
   <div>
     <label
@@ -61,8 +67,9 @@ exports[`render of Form 1`] = `
       role="user-label"
     />
     <input
+      class="min-w-full min-h-[10%] bg-slate-200 focus:outline-none p-3 placeholder:text-slate-500"
       name="username"
-      placeholder="Username ex. Joe123"
+      placeholder="Username"
       required=""
       role="username-input"
       type="text"
@@ -74,8 +81,9 @@ exports[`render of Form 1`] = `
       role="password-label"
     />
     <input
+      class="min-w-full min-h-[10%] bg-slate-200 focus:outline-none p-3 placeholder:text-slate-500"
       name="password"
-      placeholder="password"
+      placeholder="Password"
       required=""
       role="user-password"
       type="password"
