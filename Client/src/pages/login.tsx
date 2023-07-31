@@ -4,21 +4,26 @@ import InputGroup from "../components/inputgroup"
 function Login() {
   return (
     <div className="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 items-center md:flex-row md:justify-between md:p-10">
-      <form action="" method="" role="form" className="bg-white p-5 rounded">
-        <h1>Log In.</h1>
+      <form
+        action=""
+        method=""
+        role="form"
+        className="bg-white p-7 rounded flex flex-col gap-5 min-w-[25%]"
+      >
+        <h1 className="font-bold text-3xl">Log in</h1>
         <InputGroup
           dataLabel="username"
           labelRole="user-label"
           inputType="text"
           inputRole="username-input"
-          inputPlaceholder="Username ex. Joe123"
+          inputPlaceholder="Username"
         ></InputGroup>
         <InputGroup
           dataLabel="password"
           labelRole="password-label"
           inputType="password"
           inputRole="user-password"
-          inputPlaceholder="password"
+          inputPlaceholder="Password"
         ></InputGroup>
       </form>
     </div>
