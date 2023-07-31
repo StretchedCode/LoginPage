@@ -27,6 +27,14 @@ function Login() {
           inputRole="user-password"
           inputPlaceholder="Password"
         ></InputGroup>
+        <button
+          role="submit-login"
+          aria-label="form submit button"
+          formAction="submit"
+          className="bg-yellow-400 rounded-md font-semibold p-3 text-md hover:bg-yellow-500"
+        >
+          Log in
+        </button>
       </form>
     </div>
   )
