@@ -12,7 +12,7 @@ describe("Form testing", () => {
   test("Testing header label", () => {
     const { container } = render(<Login></Login>)
 
-    expect(screen.getByRole("heading").textContent).toMatch("Log In.")
+    expect(screen.getByRole("heading").textContent).toMatch("Log in")
   })
 
   test("Testing for user label", () => {
@@ -24,9 +24,7 @@ describe("Form testing", () => {
   test("Testing input for username", () => {
     const { container } = render(<Login></Login>)
 
-    expect(
-      screen.getByPlaceholderText("Username ex. Joe123").textContent,
-    ).toMatch("")
+    expect(screen.getByPlaceholderText("Username").textContent).toMatch("")
   })
 
   test("Testing for password label", () => {
@@ -38,7 +36,7 @@ describe("Form testing", () => {
   test("Testing for password input", () => {
     const { container } = render(<Login></Login>)
 
-    expect(screen.getByPlaceholderText("password").textContent).toMatch("")
+    expect(screen.getByPlaceholderText("Password").textContent).toMatch("")
   })
 })
 
