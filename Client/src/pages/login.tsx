@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom"
 import InputGroup from "../components/inputgroup"
+import LoginCircles from "../components/loginCircles"
 
 function Login() {
   return (
     <div className="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 items-center md:flex-row md:justify-between md:p-10">
+      <LoginCircles></LoginCircles>
       <form
         action=""
         method=""
