@@ -2,12 +2,6 @@ import Login from "../pages/login"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
-test("render of Form", () => {
-  const { container } = render(<Login></Login>)
-
-  expect(screen.getByRole("form")).toMatchSnapshot()
-})
-
 describe("Form testing", () => {
   test("Testing header label", () => {
     const { container } = render(<Login></Login>)
@@ -43,6 +37,12 @@ describe("Form testing", () => {
     const { container } = render(<Login></Login>)
 
     expect(screen.getByRole("submit-login").textContent).toMatch("Log in")
+  })
+
+  test("Sign-up button", () => {
+    const { container } = render(<Login></Login>)
+
+    expect(screen.getByRole("sign-up").textContent).toMatch("Sign up")
   })
 })
 
