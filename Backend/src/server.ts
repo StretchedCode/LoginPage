@@ -8,6 +8,7 @@ import path from 'path';
 import helmet from 'helmet';
 import express, { Request, Response, NextFunction } from 'express';
 import logger from 'jet-logger';
+import cors from 'cors';
 
 import 'express-async-errors';
 
@@ -26,6 +27,7 @@ const app = express();
 // **** Setup **** //
 
 // Basic middleware
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(EnvVars.CookieProps.Secret));
@@ -58,8 +60,13 @@ app.use((
   return res.status(status).json({ error: err.message });
 });
 
-app.get("/", (req, res) => {
+app.get("/log-in", (req, res) => {
   res.send("Test")
+  console.log('received')
+})
+
+app.post("/log-in", (req, res) => {
+  return res.json(req.body)
 })
 
 export default app;
