@@ -4,9 +4,16 @@ import LoginCircles from "../components/loginCircles"
 import { FormEvent, useState } from "react"
 
 function Login() {
-  const [username, setUsername] = useState("test")
-  const [password, setPassword] = useState("pass")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
   const [validForm, setValidForm] = useState(true)
+
+  const usernameHandle = (e: any) => {
+    setUsername(e.target.value)
+  }
+  const passwordHandle = (e: any) => {
+    setPassword(e.target.value)
+  }
 
   const checkForm = (e: FormEvent) => {
     if (username === "" || password === "")
@@ -35,6 +42,8 @@ function Login() {
           inputType="text"
           inputRole="username-input"
           inputPlaceholder="Username"
+          value={username}
+          onChange={usernameHandle}
         ></InputGroup>
         <InputGroup
           dataLabel="password"
@@ -42,6 +51,8 @@ function Login() {
           inputType="password"
           inputRole="user-password"
           inputPlaceholder="Password"
+          value={password}
+          onChange={passwordHandle}
         ></InputGroup>
         <button
           role="submit-login"
