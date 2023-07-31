@@ -10,7 +10,7 @@ function Login() {
         action=""
         method=""
         role="form"
-        className="bg-white p-7 rounded flex flex-col gap-5 min-w-[25%]"
+        className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[25%]"
       >
         <h1 className="font-bold text-3xl">Log in</h1>
         <InputGroup
