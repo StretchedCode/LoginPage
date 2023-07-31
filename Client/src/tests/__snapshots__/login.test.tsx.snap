@@ -5,9 +5,18 @@ exports[`DOM structure matches snapshot 1`] = `
   <div
     class="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 items-center md:flex-row md:justify-between md:p-10"
   >
+    <div
+      class="h-16 w-16 z-0 rounded-full bg-yellow-400 absolute outline outline-yellow-400 outline-offset-[30px] bottom-6 left-12"
+    />
+    <div
+      class="h-24 w-24 z-0 rounded-full bg-yellow-400 absolute outline outline-yellow-400 outline-offset-[80px] top-24 right-16"
+    />
+    <div
+      class="h-32 w-32 z-0 rounded-full bg-yellow-400 absolute outline outline-yellow-400 outline-offset-[100px] top-12 left-12"
+    />
     <form
       action=""
-      class="bg-white p-7 rounded flex flex-col gap-5 min-w-[25%]"
+      class="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[25%]"
       method=""
       role="form"
     >
@@ -52,7 +61,7 @@ exports[`DOM structure matches snapshot 1`] = `
 exports[`render of Form 1`] = `
 <form
   action=""
-  class="bg-white p-7 rounded flex flex-col gap-5 min-w-[25%]"
+  class="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[25%]"
   method=""
   role="form"
 >
