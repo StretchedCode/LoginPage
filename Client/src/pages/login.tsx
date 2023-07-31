@@ -4,13 +4,13 @@ import LoginCircles from "../components/loginCircles"
 
 function Login() {
   return (
-    <div className="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 items-center md:flex-row md:justify-between md:p-10">
+    <div className="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 justify-center items-center xl:flex-row xl:justify-between xl:p-10">
       <LoginCircles></LoginCircles>
       <form
-        action=""
-        method=""
+        action="/"
+        method="post"
         role="form"
-        className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[25%]"
+        className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[30%]"
       >
         <h1 className="font-bold text-3xl">Log in</h1>
         <InputGroup
@@ -38,6 +38,7 @@ function Login() {
         <button
           role="sign-up"
           className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
+          type="button"
         >
           Sign up
         </button>
