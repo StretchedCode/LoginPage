@@ -35,7 +35,6 @@ function Login() {
         >
           Log in
         </button>
-        <hr className="border border-slate-200"></hr>
         <button
           role="sign-up"
           className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
