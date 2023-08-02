@@ -34,14 +34,18 @@ function Form(props: formProps) {
   }
 
   return (
-    <div className="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 justify-center items-center xl:flex-row xl:justify-between xl:p-10">
+    <div
+      className={`min-h-screen min-w-[100vw] ${
+        props.type === "sign-up" ? "bg-black" : "bg-red-900"
+      } flex flex-col p-5 justify-center items-center xl:flex-row xl:justify-between xl:p-10`}
+    >
       <LoginCircles></LoginCircles>
       <form
         onSubmit={checkForm}
         role="form"
         className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[30%]"
       >
-        <h1 className="font-bold text-3xl">Log in</h1>
+        <h1 className="font-bold text-3xl">{props.type}</h1>
         <InputGroup
           dataLabel="username"
           labelRole="user-label"
@@ -96,7 +100,12 @@ function Form(props: formProps) {
             className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
             type="button"
             formAction="submit"
-          />
+            onClick={() => {
+              nav("log-in")
+            }}
+          >
+            Sign up
+          </button>
         )}
       </form>
     </div>
