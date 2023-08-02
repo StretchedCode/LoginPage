@@ -18,7 +18,6 @@ const InputGroup: FC<inputGroupProps> = (props) => {
         type={props.inputType}
         name={props.dataLabel}
         role={props.inputRole}
-        required
         placeholder={props.inputPlaceholder}
         value={props.value}
         onChange={props.onChange}
