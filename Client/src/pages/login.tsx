@@ -2,11 +2,18 @@ import { Routes, Route } from "react-router-dom"
 import InputGroup from "../components/inputgroup"
 import LoginCircles from "../components/loginCircles"
 import { FormEvent, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-function Login() {
+interface formProps {
+  type: "log-in" | "sign-up"
+  apiUrl: string
+}
+
+function Form(props: formProps) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [validForm, setValidForm] = useState(true)
+  const nav = useNavigate()
 
   const usernameHandle = (e: any) => {
     setUsername(e.target.value)
@@ -18,7 +25,7 @@ function Login() {
   const checkForm = (e: FormEvent) => {
     if (username === "" || password === "") setValidForm((validForm) => false)
     else
-      fetch("http://localhost:3000/log-in", {
+      fetch(`https://localhost:3000/${props.apiUrl}`, {
         method: "POST",
         mode: "cors",
         body: JSON.stringify([username, password]),
@@ -60,25 +67,40 @@ function Login() {
             Invalid Username or Password
           </span>
         )}
-        <button
-          role="submit-login"
-          aria-label="form submit button"
-          formAction="submit"
-          className="bg-yellow-400 rounded-md font-semibold p-3 text-md hover:bg-yellow-500"
-          type="submit"
-        >
-          Log in
-        </button>
-        <button
-          role="sign-up"
-          className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
-          type="button"
-        >
-          Sign up
-        </button>
+
+        {props.type === "log-in" ? (
+          <>
+            <button
+              role="submit-login"
+              aria-label="form submit button"
+              formAction="submit"
+              className="bg-yellow-400 rounded-md font-semibold p-3 text-md hover:bg-yellow-500"
+              type="submit"
+            >
+              Log in
+            </button>
+            <button
+              role="sign-up"
+              className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
+              type="button"
+              onClick={() => {
+                nav("sign-up")
+              }}
+            >
+              Sign up
+            </button>
+          </>
+        ) : (
+          <button
+            role="sign-up"
+            className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
+            type="button"
+            formAction="submit"
+          />
+        )}
       </form>
     </div>
   )
 }
 
-export default Login
+export default Form
