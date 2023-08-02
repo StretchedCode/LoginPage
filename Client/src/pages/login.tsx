@@ -88,7 +88,7 @@ function Form(props: formProps) {
               className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
               type="button"
               onClick={() => {
-                nav("sign-up")
+                nav("/sign-up")
               }}
             >
               Sign up
@@ -101,7 +101,7 @@ function Form(props: formProps) {
             type="button"
             formAction="submit"
             onClick={() => {
-              nav("log-in")
+              nav("/")
             }}
           >
             Sign up
