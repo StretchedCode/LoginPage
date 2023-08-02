@@ -57,7 +57,7 @@ function Login() {
           <></>
         ) : (
           <span className="p-1 bg-red-900 text-white rounded-lg text-center">
-            Invalid Form
+            Invalid Username or Password
           </span>
         )}
         <button
