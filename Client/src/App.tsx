@@ -10,7 +10,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Form type="log-in" apiUrl="login"></Form>}
+            element={<Form type="log-in" apiUrl="log-in"></Form>}
+          ></Route>
+          <Route
+            path="/sign-up"
+            element={<Form type="sign-up" apiUrl="sign-up"></Form>}
           ></Route>
         </Routes>
       </BrowserRouter>
