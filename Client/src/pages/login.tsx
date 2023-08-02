@@ -16,8 +16,7 @@ function Login() {
   }
 
   const checkForm = (e: FormEvent) => {
-    if (username === "" || password === "")
-      setValidForm((validForm) => !validForm)
+    if (username === "" || password === "") setValidForm((validForm) => false)
     else
       fetch("http://localhost:3000/log-in", {
         method: "POST",
@@ -54,6 +53,13 @@ function Login() {
           value={password}
           onChange={passwordHandle}
         ></InputGroup>
+        {validForm ? (
+          <></>
+        ) : (
+          <span className="p-1 bg-red-900 text-white rounded-lg text-center">
+            Invalid Form
+          </span>
+        )}
         <button
           role="submit-login"
           aria-label="form submit button"
