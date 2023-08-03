@@ -24,12 +24,17 @@ function Form(props: formProps) {
 
   const checkForm = (e: FormEvent) => {
     if (username === "" || password === "") setValidForm((validForm) => false)
-    else
+    else {
+      setValidForm(true)
       fetch(`https://localhost:3000/${props.apiUrl}`, {
         method: "POST",
         mode: "cors",
         body: JSON.stringify([username, password]),
       })
+
+      if (props.type === "sign-up") nav("/")
+      else nav("/home")
+    }
     e.preventDefault()
   }
 
@@ -98,11 +103,8 @@ function Form(props: formProps) {
           <button
             role="sign-up"
             className="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
-            type="button"
+            type="submit"
             formAction="submit"
-            onClick={() => {
-              nav("/")
-            }}
           >
             Sign up
           </button>
