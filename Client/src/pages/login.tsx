@@ -72,7 +72,7 @@ function Form(props: formProps) {
         {validForm ? (
           <></>
         ) : (
-          <span className="p-1 bg-red-900 text-white rounded-lg text-center">
+          <span className="p-2 bg-red-900 text-white rounded-lg text-center font-bold">
             Invalid Username or Password
           </span>
         )}
