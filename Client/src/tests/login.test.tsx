@@ -9,7 +9,7 @@ describe("Form testing - log-in", () => {
       wrapper: BrowserRouter,
     })
 
-    expect(screen.getByRole("heading").textContent).toMatch("Log in")
+    expect(screen.getByRole("heading").textContent).toMatch("log-in")
   })
 
   test("Testing for user label", () => {
@@ -57,6 +57,18 @@ describe("Form testing - log-in", () => {
     })
 
     expect(screen.getByRole("sign-up").textContent).toMatch("Sign up")
+  })
+
+  test("Sign-up button: functionality", async () => {
+    const user = userEvent.setup()
+    const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
+      wrapper: BrowserRouter,
+    })
+    const signUpButton = screen.getByRole("sign-up")
+
+    await user.click(signUpButton)
+
+    expect(window.location.pathname).toMatch("sign-up")
   })
 })
 
