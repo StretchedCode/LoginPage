@@ -16,26 +16,28 @@ function Form(props: formProps) {
   const nav = useNavigate()
 
   const usernameHandle = (e: any) => {
-    setUsername(e.target.value)
+    setUsername((username) => e.target.value)
   }
   const passwordHandle = (e: any) => {
-    setPassword(e.target.value)
+    setPassword((password) => e.target.value)
   }
 
-  const checkForm = (e: FormEvent) => {
+  const checkForm = async (e: FormEvent) => {
+    e.preventDefault()
+
     if (username === "" || password === "") setValidForm((validForm) => false)
     else {
       setValidForm(true)
-      fetch(`https://localhost:3000/${props.apiUrl}`, {
+      await fetch(`http://localhost:3000/${props.apiUrl}`, {
         method: "POST",
         mode: "cors",
-        body: JSON.stringify([username, password]),
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-type": "application/json" },
       })
 
       if (props.type === "sign-up") nav("/")
       else nav("/home")
     }
-    e.preventDefault()
   }
 
   return (
@@ -47,6 +49,7 @@ function Form(props: formProps) {
       <LoginCircles></LoginCircles>
       <form
         onSubmit={checkForm}
+        action="post"
         role="form"
         className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[30%]"
       >
