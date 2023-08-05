@@ -94,7 +94,36 @@ describe("Form testing - sign-up", () => {
     expect(screen.getByRole("heading").textContent).toMatch("sign-up")
   })
 
-  test("")
+  test("Testing username and password labels", () => {
+    const { container } = render(
+      <Form type="sign-up" apiUrl="sign-up"></Form>,
+      {
+        wrapper: BrowserRouter,
+      },
+    )
+    expect(screen.getByPlaceholderText("Username")).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Password")).toBeInTheDocument()
+  })
+
+  test("Testing username and password inputs", async () => {
+    const user = userEvent.setup()
+
+    const { container } = render(
+      <Form type="sign-up" apiUrl="sign-up"></Form>,
+      {
+        wrapper: BrowserRouter,
+      },
+    )
+
+    const passInput = screen.getByPlaceholderText("Password")
+    const userInput = screen.getByPlaceholderText("Username")
+
+    await user.type(passInput, "testPass")
+    await user.type(userInput, "testUser")
+
+    expect(passInput).toHaveValue("testPass")
+    expect(userInput).toHaveValue("testUser")
+  })
 })
 
 test("DOM structure matches snapshot - login form", () => {
