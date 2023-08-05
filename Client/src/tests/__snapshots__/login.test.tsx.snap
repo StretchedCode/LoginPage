@@ -1,5 +1,77 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`DOM structure matches snapshot - login form 1`] = `
+<div>
+  <div
+    class="min-h-screen min-w-[100vw] bg-red-900 flex flex-col p-5 justify-center items-center xl:flex-row xl:justify-between xl:p-10"
+  >
+    <div
+      class="h-16 w-16 z-0 rounded-full bg-yellow-400 absolute outline outline-yellow-400 outline-offset-[30px] bottom-6 left-12"
+    />
+    <div
+      class="h-24 w-24 z-0 rounded-full bg-yellow-400 absolute outline outline-yellow-400 outline-offset-[80px] top-24 right-16"
+    />
+    <div
+      class="h-32 w-32 z-0 rounded-full bg-yellow-400 absolute outline outline-yellow-400 outline-offset-[100px] top-12 left-12"
+    />
+    <form
+      class="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[30%]"
+      role="form"
+    >
+      <h1
+        class="font-bold text-3xl"
+      >
+        log-in
+      </h1>
+      <div>
+        <label
+          for="username"
+          role="user-label"
+        />
+        <input
+          class="min-w-full min-h-[10%] bg-slate-200 focus:outline-none p-3 placeholder:text-slate-500"
+          name="username"
+          placeholder="Username"
+          role="username-input"
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <label
+          for="password"
+          role="password-label"
+        />
+        <input
+          class="min-w-full min-h-[10%] bg-slate-200 focus:outline-none p-3 placeholder:text-slate-500"
+          name="password"
+          placeholder="Password"
+          role="user-password"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        aria-label="form submit button"
+        class="bg-yellow-400 rounded-md font-semibold p-3 text-md hover:bg-yellow-500"
+        formaction="submit"
+        role="submit-login"
+        type="submit"
+      >
+        Log in
+      </button>
+      <button
+        class="bg-fuchsia-400 rounded-md text-white p-3 text-md hover:bg-fuchsia-500 font-semibold"
+        role="sign-up"
+        type="button"
+      >
+        Sign up
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
 exports[`DOM structure matches snapshot 1`] = `
 <div>
   <div
