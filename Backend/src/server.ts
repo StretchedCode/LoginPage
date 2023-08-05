@@ -66,7 +66,8 @@ app.get("/log-in", (req, res) => {
   console.log('received')
 })
 
-app.post("/log-in", (req, res) => {
+app.post("/sign-up", (req, res) => {
+  console.log(req)
   return res.json(req.body)
 })
 
