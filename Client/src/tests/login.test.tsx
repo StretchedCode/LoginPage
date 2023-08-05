@@ -20,11 +20,17 @@ describe("Form testing - log-in", () => {
     expect(screen.getByRole("user-label").textContent).toMatch("")
   })
 
-  test("Testing input for username", () => {
+  test("Testing input for username", async () => {
+    const user = userEvent.setup()
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
       wrapper: BrowserRouter,
     })
-    expect(screen.getByPlaceholderText("Username").textContent).toMatch("")
+
+    const userInput = screen.getByPlaceholderText("Username")
+
+    await user.type(userInput, "sample username")
+
+    expect(userInput).toHaveValue("sample username")
   })
 
   test("Testing for password label", () => {
@@ -35,12 +41,16 @@ describe("Form testing - log-in", () => {
     expect(screen.getByRole("password-label").textContent).toMatch("")
   })
 
-  test("Testing for password input", () => {
+  test("Testing for password input", async () => {
+    const user = userEvent.setup()
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
       wrapper: BrowserRouter,
     })
 
-    expect(screen.getByPlaceholderText("Password").textContent).toMatch("")
+    const passInput = screen.getByPlaceholderText("Password")
+
+    await user.type(passInput, "sample Password")
+    expect(passInput).toHaveValue("sample Password")
   })
 
   test("Valid Form Button", () => {
@@ -72,7 +82,22 @@ describe("Form testing - log-in", () => {
   })
 })
 
-test("DOM structure matches snapshot", () => {
+describe("Form testing - sign-up", () => {
+  test("Testing Header Label", () => {
+    const { container } = render(
+      <Form type="sign-up" apiUrl="sign-up"></Form>,
+      {
+        wrapper: BrowserRouter,
+      },
+    )
+
+    expect(screen.getByRole("heading").textContent).toMatch("sign-up")
+  })
+
+  test("")
+})
+
+test("DOM structure matches snapshot - login form", () => {
   const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
     wrapper: BrowserRouter,
   })
