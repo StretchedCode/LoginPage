@@ -6,3 +6,6 @@ Login page has been completed, alongside fetch request to back-end API. Before c
 
 # Aug 5 5:20 PM
 Login component has been refactored in order to be more re-usable, and testing has been fully implemented for both 'versions' of the Form component. Now, defining the DB models and working on verification and sign-in are the next major steps towards completing the project.
+
+# Aug 5 6:31 PM
+Successfully established connection between client and backend, next steps are instantiating models, extensively testing authentication and json web tokens, alongside fleshing out the front-end for the actual content portion of the application: the blogs!
