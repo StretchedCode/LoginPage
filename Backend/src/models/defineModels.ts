@@ -7,8 +7,7 @@ const sequelize = new Sequelize("blogapp", "ghufranshahid", {
 
 const User = require("./user")(sequelize)
 
-
-module.exports = {
+export{
     sequelize,
     User
 }
