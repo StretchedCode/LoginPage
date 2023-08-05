@@ -18,6 +18,7 @@ import HttpStatusCodes from '@src/constants/HttpStatusCodes';
 import { NodeEnvs } from '@src/constants/misc';
 import { RouteError } from '@src/other/classes';
 
+import { sequelize, User } from './models/defineModels'
 
 // **** Variables **** //
 
