@@ -9,3 +9,6 @@ Login component has been refactored in order to be more re-usable, and testing h
 
 # Aug 5 6:31 PM
 Successfully established connection between client and backend, next steps are instantiating models, extensively testing authentication and json web tokens, alongside fleshing out the front-end for the actual content portion of the application: the blogs!
+
+# Aug 7 1:18 AM
+Users will be created through a regular fetch request, with logic found within the component itself, while log-in requests will instead be handled through the store. First task therefore, is handling the creation of users through the database!
