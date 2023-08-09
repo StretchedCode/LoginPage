@@ -4,17 +4,24 @@ import LoginCircles from "../components/loginCircles"
 import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import BreadCrumb from "../components/breadcrumb"
+import { useAppDispatch } from "../app/hooks"
+import { postUser } from "../slices/userSlice"
 
 interface formProps {
   type: "log-in" | "sign-up"
   apiUrl: string
 }
-
+export interface dataInterface {
+  apiUrl: string,
+  username: string,
+  password: string
+}
 function Form(props: formProps) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [validForm, setValidForm] = useState(true)
   const nav = useNavigate()
+  const dispatch = useAppDispatch()
 
   const usernameHandle = (e: any) => {
     setUsername((username) => e.target.value)
@@ -29,12 +36,8 @@ function Form(props: formProps) {
     if (username === "" || password === "") setValidForm((validForm) => false)
     else {
       setValidForm(true)
-      await fetch(`http://localhost:3000/${props.apiUrl}`, {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify({ username, password }),
-        headers: { "Content-type": "application/json" },
-      })
+      const {type, apiUrl} = props
+      dispatch(postUser({apiUrl, username, password}))
 
       if (props.type === "sign-up") nav("/")
       else nav("/home")
