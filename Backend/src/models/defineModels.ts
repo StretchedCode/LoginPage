@@ -1,13 +1,15 @@
-import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("blogapp", "ghufranshahid", {
-    host: 'localhost',
-    dialect: 'postgres'
+import { Sequelize } from "sequelize-typescript"
+import EnvVars from "@src/constants/EnvVars"
+
+console.log("hello")
+const sequelize = new Sequelize({
+    database: 'blogapp',
+    username: 'ghufranshahid',
+    host: '10.0.0.70',
+    password: '',
+    dialect: 'postgres',
+    models:[__dirname + "/User"]
 })
 
-const User = require("./user")(sequelize)
-
-export{
-    sequelize,
-    User
-}
+export default sequelize
