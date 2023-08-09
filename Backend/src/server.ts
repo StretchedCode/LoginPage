@@ -9,7 +9,7 @@ import helmet from 'helmet';
 import express, { Request, Response, NextFunction } from 'express';
 import logger from 'jet-logger';
 import cors from 'cors';
-
+import 'dotenv/config'
 import 'express-async-errors';
 
 import EnvVars from '@src/constants/EnvVars';
@@ -17,8 +17,8 @@ import HttpStatusCodes from '@src/constants/HttpStatusCodes';
 
 import { NodeEnvs } from '@src/constants/misc';
 import { RouteError } from '@src/other/classes';
-
-import { sequelize, User } from './models/defineModels'
+import sequelize from './models/defineModels';
+import { User } from './models/User';
 
 // **** Variables **** //
 
