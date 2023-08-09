@@ -3,6 +3,7 @@ import InputGroup from "../components/inputgroup"
 import LoginCircles from "../components/loginCircles"
 import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import BreadCrumb from "../components/breadcrumb"
 
 interface formProps {
   type: "log-in" | "sign-up"
@@ -51,7 +52,7 @@ function Form(props: formProps) {
         onSubmit={checkForm}
         action="post"
         role="form"
-        className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[30%]"
+        className="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[60%] md:min-w-[50%] lg:min-w-[30%]"
       >
         <h1 className="font-bold text-3xl">{props.type}</h1>
         <InputGroup
@@ -113,6 +114,9 @@ function Form(props: formProps) {
           </button>
         )}
       </form>
+      {
+        username !== "" ? <BreadCrumb text="Test Test Test Test Test" status="success"></BreadCrumb> : <></>
+      }
     </div>
   )
 }
