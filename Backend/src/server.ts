@@ -9,6 +9,8 @@ import helmet from 'helmet';
 import express, { Request, Response, NextFunction } from 'express';
 import logger from 'jet-logger';
 import cors from 'cors';
+import passport from 'passport';
+import bcrypt from "bcryptjs"
 import 'dotenv/config'
 import 'express-async-errors';
 
@@ -26,6 +28,9 @@ const app = express();
 
 
 // **** Setup **** //
+
+// security setup
+
 
 // Basic middleware
 app.use(cors())
@@ -66,9 +71,16 @@ app.get("/log-in", (req, res) => {
   console.log('received')
 })
 
-app.post("/sign-up", (req, res) => {
-  console.log(req.body)
-  return res.json(req.body)
+app.post("/sign-up", async (req, res, next) => {
+  try {
+    await bcrypt.hash(req.body.password, 10, async (err, hashedPass) => {
+      await User.create({user: req.body.username, password: hashedPass})
+    })
+  } catch (error) {
+    next(error)
+  }
+
+  return res.json({status: "success"})
 })
 
 export default app;
