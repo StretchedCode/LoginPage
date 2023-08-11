@@ -4,11 +4,13 @@ import { dataInterface } from "../pages/login"
 export interface userInterface {
     userCreated: boolean,
     loginstatus: "failure" | "loading" | "success" | "no attempt"
+    visibleCrumbs: boolean
 }
 
 const initialState: userInterface = {
     userCreated: false,
-    loginstatus: "no attempt"
+    loginstatus: "no attempt",
+    visibleCrumbs: true
 }
 
 export const postUser = createAsyncThunk(
@@ -28,7 +30,14 @@ export const postUser = createAsyncThunk(
 export const userSlice = createSlice({
     name: "User",
     initialState,
-    reducers: {},
+    reducers: {
+        enableCrumbs: (state) => {
+            state.visibleCrumbs = true
+        },
+        disableCrumbs: (state) => {
+            state.visibleCrumbs = false
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(postUser.pending, (state) => {
@@ -44,5 +53,7 @@ export const userSlice = createSlice({
             })
     }
 })
+
+export const {enableCrumbs, disableCrumbs} = userSlice.actions
 
 export default userSlice.reducer
