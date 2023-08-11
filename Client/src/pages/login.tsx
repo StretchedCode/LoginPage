@@ -5,7 +5,8 @@ import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import BreadCrumb from "../components/breadcrumb"
 import { useAppDispatch } from "../app/hooks"
-import { postUser } from "../slices/userSlice"
+import { useAppSelector } from "../app/hooks"
+import { postUser, enableCrumbs } from "../slices/userSlice"
 
 interface formProps {
   type: "log-in" | "sign-up"
@@ -20,8 +21,13 @@ function Form(props: formProps) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [validForm, setValidForm] = useState(true)
+  
   const nav = useNavigate()
   const dispatch = useAppDispatch()
+
+  const userStatus = useAppSelector(state => state.User.loginstatus)
+  const userCreated = useAppSelector(state => state.User.userCreated)
+  const crumbStatus = useAppSelector(state => state.User.visibleCrumbs)
 
   const usernameHandle = (e: any) => {
     setUsername((username) => e.target.value)
@@ -38,12 +44,11 @@ function Form(props: formProps) {
       setValidForm(true)
       const {type, apiUrl} = props
       dispatch(postUser({apiUrl, username, password}))
-
+      dispatch(enableCrumbs())
       if (props.type === "sign-up") nav("/")
       else nav("/home")
     }
   }
-
   return (
     <div
       className={`min-h-screen min-w-[100vw] ${
@@ -118,7 +123,10 @@ function Form(props: formProps) {
         )}
       </form>
       {
-        username !== "" ? <BreadCrumb text="Test Test Test Test Test" status="success"></BreadCrumb> : <></>
+        userStatus === "failure" && crumbStatus ? <BreadCrumb status="error" text="An unexpected error has occurred. Please try again!"></BreadCrumb> : null
+      }
+      {
+        userStatus === "success" && crumbStatus ? userCreated ? <BreadCrumb  status="success" text="Success! Your user has been created, please log-in!"></BreadCrumb> : <BreadCrumb status="success" text="Success! You have been logged in!"></BreadCrumb> : null
       }
     </div>
   )
