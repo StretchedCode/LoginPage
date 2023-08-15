@@ -24,6 +24,7 @@ import { NodeEnvs } from '@src/constants/misc';
 import { RouteError } from '@src/other/classes';
 import sequelize from './models/defineModels';
 import { User } from './models/User';
+import { VerifyOptions } from 'jsonwebtoken';
 
 // **** Variables **** //
 
@@ -53,6 +54,18 @@ passport.use(new LocalStrategy.Strategy(async (username, password, done) => {
   } catch (error) {
     done(error)
   }
+}))
+
+passport.use(new jwtStrategy.Strategy({
+  jwtFromRequest: jwtStrategy.ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: EnvVars.Jwt.Secret
+}, async (jwt_payload, done) => {
+  const user: any = await User.findOne({where: {user: jwt_payload.user}})
+
+  if (!user) {
+    return done(null, true)
+  }
+  return done(null, false)
 }))
 
 // Basic middleware
