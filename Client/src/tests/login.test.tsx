@@ -2,11 +2,25 @@ import Form from "../pages/login"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom"
+import { Provider } from "react-redux"
+import { store } from "../app/store"
+
+const testWrapper = ({ children }) => {
+  return (
+    <>
+    <Provider store={store}>
+      <BrowserRouter>
+        {children}
+      </BrowserRouter>
+    </Provider>
+    </>
+  )
+}
 
 describe("Form testing - log-in", () => {
   test("Testing header label", () => {
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     expect(screen.getByRole("heading").textContent).toMatch("log-in")
@@ -14,7 +28,7 @@ describe("Form testing - log-in", () => {
 
   test("Testing for user label", () => {
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     expect(screen.getByRole("user-label").textContent).toMatch("")
@@ -23,7 +37,7 @@ describe("Form testing - log-in", () => {
   test("Testing input for username", async () => {
     const user = userEvent.setup()
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     const userInput = screen.getByPlaceholderText("Username")
@@ -35,7 +49,7 @@ describe("Form testing - log-in", () => {
 
   test("Testing for password label", () => {
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     expect(screen.getByRole("password-label").textContent).toMatch("")
@@ -44,7 +58,7 @@ describe("Form testing - log-in", () => {
   test("Testing for password input", async () => {
     const user = userEvent.setup()
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     const passInput = screen.getByPlaceholderText("Password")
@@ -55,7 +69,7 @@ describe("Form testing - log-in", () => {
 
   test("Valid Form Button", () => {
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     expect(screen.getByRole("submit-login").textContent).toMatch("Log in")
@@ -63,7 +77,7 @@ describe("Form testing - log-in", () => {
 
   test("Sign-up button", () => {
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
 
     expect(screen.getByRole("sign-up").textContent).toMatch("Sign up")
@@ -72,7 +86,7 @@ describe("Form testing - log-in", () => {
   test("Sign-up button: functionality", async () => {
     const user = userEvent.setup()
     const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-      wrapper: BrowserRouter,
+      wrapper: testWrapper,
     })
     const signUpButton = screen.getByRole("sign-up")
 
@@ -87,7 +101,7 @@ describe("Form testing - sign-up", () => {
     const { container } = render(
       <Form type="sign-up" apiUrl="sign-up"></Form>,
       {
-        wrapper: BrowserRouter,
+        wrapper: testWrapper,
       },
     )
 
@@ -98,7 +112,7 @@ describe("Form testing - sign-up", () => {
     const { container } = render(
       <Form type="sign-up" apiUrl="sign-up"></Form>,
       {
-        wrapper: BrowserRouter,
+        wrapper: testWrapper,
       },
     )
     expect(screen.getByPlaceholderText("Username")).toBeInTheDocument()
@@ -111,7 +125,7 @@ describe("Form testing - sign-up", () => {
     const { container } = render(
       <Form type="sign-up" apiUrl="sign-up"></Form>,
       {
-        wrapper: BrowserRouter,
+        wrapper: testWrapper,
       },
     )
 
@@ -128,7 +142,7 @@ describe("Form testing - sign-up", () => {
 
 test("DOM structure matches snapshot - login form", () => {
   const { container } = render(<Form type="log-in" apiUrl="login"></Form>, {
-    wrapper: BrowserRouter,
+    wrapper: testWrapper,
   })
 
   expect(container).toMatchSnapshot()
