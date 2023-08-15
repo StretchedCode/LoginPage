@@ -38,18 +38,22 @@ passport.use(new LocalStrategy.Strategy(async (username, password, done) => {
   try {
     // STOP GAP FOR TYPE INFERENCE 
     const user: any = await User.findOne({where: {user: username}})
+    console.log(username, password)
+    console.log(user)
+    console.log(user.password)
 
     if (!user) {
       return done(null, false, {message: "Incorrect Username"})
     }
 
     const authPass = bcrypt.compareSync(password, user.password)
+    console.log(authPass)
 
     if (!authPass) {
+      console.log("called")
       return done(null, false, {message: "Incorrect Password"})
-    } else {
-      return done(null, user)
     }
+    return done(null, user)
 
   } catch (error) {
     done(error)
@@ -102,9 +106,11 @@ app.use((
   return res.status(status).json({ error: err.message });
 });
 
-app.get("/log-in", (req, res) => {
-  res.send("Test")
-  console.log('received')
+app.post("/log-in", passport.authenticate("local", {session: false}), (req: Request, res: Response) => {
+  return res.status(300).json({text: "Successfuly login"})
+}, (err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.log("failed login")
+  return res.status(500).json({status: "Failed log-in"})
 })
 
 app.post("/sign-up", async (req, res, next) => {
@@ -116,7 +122,7 @@ app.post("/sign-up", async (req, res, next) => {
     next(error)
   }
 
-  return res.json({status: "success"})
+  return res.json({status: "usercreation success"})
 })
 
 export default app;
