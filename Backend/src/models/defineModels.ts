@@ -2,7 +2,6 @@
 import { Sequelize } from "sequelize-typescript"
 import EnvVars from "@src/constants/EnvVars"
 
-console.log("hello")
 const sequelize = new Sequelize({
     database: 'blogapp',
     username: 'ghufranshahid',
