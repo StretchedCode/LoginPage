@@ -10,6 +10,9 @@ import express, { Request, Response, NextFunction } from 'express';
 import logger from 'jet-logger';
 import cors from 'cors';
 import passport from 'passport';
+import jwtStrategy from 'passport-jwt';
+import { Jwt } from 'jsonwebtoken';
+import LocalStrategy from "passport-local"
 import bcrypt from "bcryptjs"
 import 'dotenv/config'
 import 'express-async-errors';
@@ -30,7 +33,27 @@ const app = express();
 // **** Setup **** //
 
 // security setup
+passport.use(new LocalStrategy.Strategy(async (username, password, done) => {
+  try {
+    // STOP GAP FOR TYPE INFERENCE 
+    const user: any = await User.findOne({where: {user: username}})
 
+    if (!user) {
+      return done(null, false, {message: "Incorrect Username"})
+    }
+
+    const authPass = bcrypt.compareSync(password, user.password)
+
+    if (!authPass) {
+      return done(null, false, {message: "Incorrect Password"})
+    } else {
+      return done(null, user)
+    }
+
+  } catch (error) {
+    done(error)
+  }
+}))
 
 // Basic middleware
 app.use(cors())
