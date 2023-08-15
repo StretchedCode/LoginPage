@@ -16,7 +16,7 @@ exports[`DOM structure matches snapshot - login form 1`] = `
     />
     <form
       action="post"
-      class="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[30%]"
+      class="bg-white z-10 p-7 rounded flex flex-col gap-5 min-w-[60%] md:min-w-[50%] lg:min-w-[30%]"
       role="form"
     >
       <h1
