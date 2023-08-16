@@ -16,7 +16,7 @@ const initialState: userInterface = {
 export const postUser = createAsyncThunk(
     "User/Postuser", async (clientData: dataInterface) => {
         const {apiUrl, username, password} = clientData
-        const response = await fetch(`http://localhost:3100/${apiUrl}`, {
+        const response = await fetch(`http://localhost:3000/${apiUrl}`, {
             method: "POST",
             mode: "cors",
             body: JSON.stringify({ username, password }),
