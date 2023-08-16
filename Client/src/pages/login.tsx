@@ -41,12 +41,14 @@ function Form(props: formProps) {
 
     if (username === "" || password === "") setValidForm((validForm) => false)
     else {
-      setValidForm(true)
       const {type, apiUrl} = props
-      dispatch(postUser({apiUrl, username, password}))
+      const data = await dispatch(postUser({apiUrl, username, password}))
       dispatch(enableCrumbs())
+
+      data.payload ? setValidForm((validForm) => true) : setValidForm((validForm) => false)
+      
       if (props.type === "sign-up") nav("/")
-      else nav("/home")
+      else nav("/")
     }
   }
   return (
@@ -126,7 +128,11 @@ function Form(props: formProps) {
         userStatus === "failure" && crumbStatus ? <BreadCrumb status="error" text="An unexpected error has occurred. Please try again!"></BreadCrumb> : null
       }
       {
-        userStatus === "success" && crumbStatus ? userCreated ? <BreadCrumb  status="success" text="Success! Your user has been created, please log-in!"></BreadCrumb> : <BreadCrumb status="success" text="Success! You have been logged in!"></BreadCrumb> : null
+        (userStatus === "success" || userStatus === "no attempt") && crumbStatus ? 
+          userCreated ? 
+            <BreadCrumb  status="success" text="Your account has been created."></BreadCrumb> 
+            : <BreadCrumb status="success" text="You have been logged in!"></BreadCrumb> 
+        : null
       }
     </div>
   )
