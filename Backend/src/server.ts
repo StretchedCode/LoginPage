@@ -40,7 +40,6 @@ passport.use(new LocalStrategy.Strategy(async (username, password, done) => {
     const user: any = await User.findOne({where: {user: username}})
     console.log(username, password)
     console.log(user)
-    console.log(user.password)
 
     if (!user) {
       return done(null, false, {message: "Incorrect Username"})
@@ -50,7 +49,6 @@ passport.use(new LocalStrategy.Strategy(async (username, password, done) => {
     console.log(authPass)
 
     if (!authPass) {
-      console.log("called")
       return done(null, false, {message: "Incorrect Password"})
     }
     return done(null, user)
@@ -106,12 +104,11 @@ app.use((
   return res.status(status).json({ error: err.message });
 });
 
-app.post("/log-in", passport.authenticate("local", {session: false}), (req: Request, res: Response) => {
-  return res.status(300).json({text: "Successfuly login"})
-}, (err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log("failed login")
-  return res.status(500).json({status: "Failed log-in"})
-})
+app.post("/log-in", 
+  passport.authenticate("local", {session: false}), (req: Request, res: Response) => {
+
+  return res.status(200).json({action: "Successful log-in"})
+  })
 
 app.post("/sign-up", async (req, res, next) => {
   try {
@@ -122,7 +119,7 @@ app.post("/sign-up", async (req, res, next) => {
     next(error)
   }
 
-  return res.json({status: "usercreation success"})
+  return res.status(200).json({action: "User Created"})
 })
 
 export default app;
