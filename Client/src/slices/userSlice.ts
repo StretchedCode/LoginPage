@@ -10,20 +10,21 @@ export interface userInterface {
 const initialState: userInterface = {
     userCreated: false,
     loginstatus: "no attempt",
-    visibleCrumbs: true
+    visibleCrumbs: false
 }
 
 export const postUser = createAsyncThunk(
     "User/Postuser", async (clientData: dataInterface) => {
         const {apiUrl, username, password} = clientData
-        const data = await fetch(`http://localhost:3000/${apiUrl}`, {
+        const response = await fetch(`http://localhost:3100/${apiUrl}`, {
             method: "POST",
             mode: "cors",
             body: JSON.stringify({ username, password }),
             headers: { "Content-type": "application/json" },
           })
-        console.log(data.status)
-        return data.status
+        const data = await response.json()
+        console.log(data)
+        return data
     }
 )
 
@@ -47,9 +48,18 @@ export const userSlice = createSlice({
                 state.loginstatus = "failure"
                 state.userCreated = false
             })
-            .addCase(postUser.fulfilled, (state) => {
-                state.loginstatus = "success"
-                state.userCreated = true
+            .addCase(postUser.fulfilled, (state, action) => {
+                
+                if (action.payload.action === "Successful log-in") {
+                    state.loginstatus = "success"
+                    state.userCreated = false
+                } else if (action.payload.action === "User Created") {
+                    state.loginstatus = "no attempt"
+                    state.userCreated = true
+                } else {
+                    state.loginstatus = "failure"
+                    state.userCreated = false
+                }
             })
     }
 })
